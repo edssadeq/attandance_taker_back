@@ -1,0 +1,17 @@
+{
+    "name": "essadeq/attendance_taker_backend",
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "src\\": "./src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "edssadeq",
+            "email": "essadeq0701@gmail.com"
+        }
+    ]
+}
