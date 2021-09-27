@@ -42,7 +42,7 @@ class ParticipantController extends ControllerAbstract
     protected function create()
     {
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        if (! $this->validateParticipant($input)) {
+        if (!$this->validateParticipant($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->participant_gateway->insert($input);
@@ -60,7 +60,7 @@ class ParticipantController extends ControllerAbstract
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         //php://input is a read-only stream that allows you to read raw data from the request body.
         // php://input is not available with enctype="multipart/form-data".
-        if (! $this->validateParticipant($input)) {
+        if (!$this->validateParticipant($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->participant_gateway->update($id, $input);
@@ -86,7 +86,11 @@ class ParticipantController extends ControllerAbstract
             PAR_EMAIL
          */
 
-        if (!isset($data['PAR_FNAME']) || !isset($data['PAR_LNAME']) ) {
+        
+		if(!isset($data['PAR_FNAME']) || !isset($data['PAR_LNAME'])){
+			return false;
+		}
+		if (strlen($data['PAR_FNAME'])<=0 || strlen($data['PAR_LNAME'])<=0 ) {
             return false;
         }
         return true;
